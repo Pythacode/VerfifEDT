@@ -18,8 +18,8 @@ def log(message) :
 
     print(f"{Fore.YELLOW}[{now}] {message}")
 
-username = "t.petitfrulio"
-password  = "TitFru_21/100"
+username = "username"
+password  = "password"
 url = "https://joliot-curie.mon-ent-occitanie.fr/sg.do?PROC=PAGE_ACCUEIL&ACTION=VALIDER"
 
 log("Open driver")
