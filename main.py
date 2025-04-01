@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +6,6 @@ from selenium.webdriver.firefox.webdriver import Options
 from colorama import init, Fore
 from datetime import datetime
 import re
-from ics import Calendar, Event
 from datetime import datetime
 from selenium.common.exceptions import NoSuchElementException
 
@@ -19,15 +17,6 @@ def log(message) :
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     print(f"{Fore.YELLOW}[{now}] {message}")
-
-
-# Charger un fichier iCalendar existant (ou créer un nouveau calendrier)
-try:
-    with open("file.ics", "r") as f:
-        calendar = Calendar(f.read())
-except FileNotFoundError:
-    calendar = Calendar()
-
 
 username = "t.petitfrulio"
 password  = "TitFru_21/100"
