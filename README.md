@@ -57,13 +57,13 @@ Attention, si la connexion est mauvaise, le programme peut ne pas fonctionner.
 ### Exemple de sortie
 
 ```bash
-[2025-04-08 09:44:12] Open driver
+[33m[2025-04-08 09:44:12] Open driver
 [2025-04-08 09:44:44] Driver opened
 [2025-04-08 09:44:45] Connection
 [2025-04-08 09:44:46] Éduconnect
 [2025-04-08 09:44:51] Bot log !
 [2025-04-08 09:44:53] Pronote
-[2025-04-08 09:45:02] Pronote load
+[2025-04-08 09:45:02] Pronote load[39m
 Cours : SC.NUMERIQ.TECHNOL. de 12h55 à 14h45. Fin dans 11 minutes
 Prochain cours : ALLEMAND LV2 de 1
 ```
