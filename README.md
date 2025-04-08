@@ -41,8 +41,12 @@ Quand la page GitHub du projet s'ouvre, GeckoDriver seras installé.
 
 ## Utilisation 
 
-Pour utiliser le programme, il faut le configurer ces information de connection en ouvran `login_info.txt`
-lancer dans un terminal avec
+Pour utiliser le programme, il faut le configurer ces information de connection en ouvrant `login_info.txt`, puis en mettant sur la première ligne le nom d'utilisateur, sur la deuxième ligne le mot de passe, et sur la troisième l'url de connection qui correspond à l'url de la page ci-dessous.
+
+![image](https://github.com/user-attachments/assets/d35883c1-637e-4dd1-b1cd-1683dd4cb0a1)
+
+
+Enfin, lancer le programe dans un terminal avec
 ```bash
 python main.py
 ```
@@ -57,20 +61,20 @@ Attention, si la connexion est mauvaise, le programme peut ne pas fonctionner.
 ### Exemple de sortie
 
 ```bash
-[33m[2025-04-08 09:44:12] Open driver
+[2025-04-08 09:44:12] Open driver
 [2025-04-08 09:44:44] Driver opened
 [2025-04-08 09:44:45] Connection
 [2025-04-08 09:44:46] Éduconnect
 [2025-04-08 09:44:51] Bot log !
 [2025-04-08 09:44:53] Pronote
-[2025-04-08 09:45:02] Pronote load[39m
+[2025-04-08 09:45:02] Pronote load
 Cours : SC.NUMERIQ.TECHNOL. de 12h55 à 14h45. Fin dans 11 minutes
-Prochain cours : ALLEMAND LV2 de 1
+Prochain cours : ALLEMAND LV2 de 15h00 à 15h55. Début dans 26 minutes
 ```
 
 ## Explication du code
 
-Pour tous ceux & celles qui veulent améliorer le code, le modifier, ajouter une UI, cette section est faite pour toi :
+Pour tous ceux & celles qui veulent améliorer le code, le modifier, l'utiliser à des fin utiles (ou non), cette section est faite pour toi :
 
 ### Fichier `main.py`
 
