@@ -18,14 +18,16 @@ def log(message) :
 
     print(f"{Fore.YELLOW}[{now}] {message}")
 
-username = "username"
-password  = "password"
-url = "https://joliot-curie.mon-ent-occitanie.fr/sg.do?PROC=PAGE_ACCUEIL&ACTION=VALIDER"
+log_info = open('log_info.txt', 'r').read().splitlines()
+
+username = log_info[0]
+password  = log_info[1]
+url = log_info[2]
 
 log("Open driver")
 
 options = Options()
-#options.add_argument("--headless")
+options.add_argument("--headless")
 
 driver = webdriver.Firefox(options=options)
 
@@ -96,7 +98,6 @@ cour_element = driver.find_element(By.ID, "id_74id_38")
 elements = cour_element.find_elements(By.XPATH, ".//li")
 
 now = datetime.now()
-now = datetime.strptime(f"14h34", format_hour).replace(year=now.year, month=now.month, day=now.day)
 
 def locate_cours(elements) :
 
