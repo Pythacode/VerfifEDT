@@ -18,7 +18,7 @@ def log(message) :
 
     print(f"{Fore.YELLOW}[{now}] {message}")
 
-log_info = open('log_info.txt', 'r').read().splitlines()
+log_info = open('login_info.txt', 'r').read().splitlines()
 
 username = log_info[0]
 password  = log_info[1]
