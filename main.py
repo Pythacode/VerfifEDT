@@ -10,7 +10,7 @@ from datetime import datetime
 from selenium.common.exceptions import NoSuchElementException
 
 
-init(autoreset=True)
+init(autoreset=True) # RESET automatiquement la couleur à la fin d'un print
 
 def log(message) :
 

@@ -67,7 +67,7 @@ Attention, si la connexion est mauvaise, le programme peut ne pas fonctionner.
 [2025-04-08 09:44:46] Éduconnect
 [2025-04-08 09:44:51] Bot log !
 [2025-04-08 09:44:53] Pronote
-[2025-04-08 09:45:02] Pronote load
+[2025-04-08 09:45:02] Pronote load
 Cours : SC.NUMERIQ.TECHNOL. de 12h55 à 14h45. Fin dans 11 minutes
 Prochain cours : ALLEMAND LV2 de 15h00 à 15h55. Début dans 26 minutes
 ```
@@ -78,72 +78,101 @@ Pour tous ceux & celles qui veulent améliorer le code, le modifier, l'utiliser 
 
 ### Fichier `main.py`
 
-> [!TIP]
-> Souvent, le code est commenté ligne par ligne dans le fichier. Si tu ne comprends pas cette explication, lis le code, tu comprendras peut-être mieux
 
-#### Fonction `contient_nombre(nbr)`
+#### Fonction `log(message)`
 
-Cette fonction vérifie si `nbr` contient un nombre. On l'appellera dans `get_param(exp, is_invert=False)`
+Affiche `message` avec l'heure et la date en jaune sous le format suivant : `[AAA-MM-JJ HH:MM:SS] message`
+Se serais facilement adaptable au pour l'enregister dans un fichier de log.
 
-##### Input :
-| Variable | Description | Type | Exemple |
-|----------|----|--|---------|
-| nbr  | Variable à vérifier si elle contient un nombre | str  | "4x" ou "x"  |
+#### Définition des information de connection
 
-##### Output :
-bool :
-`True` si `nbr` contient un nombre
+```python
+log_info = open('login_info.txt', 'r').read().splitlines() # ouvre le fichier login_info.txt et le transforme en liste en séparant cheque retour à la ligne
 
-### Fonction `split_with_sign(text, sign:str)`
+username = log_info[0] # Première ligne du fichier
+password  = log_info[1] # Deuxième ligne du fichier
+url = log_info[2] # Troisième ligne du fichier
+```
 
-Permet de séparer `text` avec `sign` en gardant le signe, si l'expression n'en a pas déjà (`+` ou `-`)
+#### Ouverture du driver 
 
-##### Input :
-| Variable | Description | Type | Exemple |
-|----------|----|--|---------|
-| text  | Variable à séparer | str  | "4x+9y" |
-| sign  | Signe pour séparer | str  | "+" |
+```python
+options = Options() # Crée un objet option
+options.add_argument("--headless") # Ajoute une option pour cacher l'UI (facultatif)
 
-##### Output :
-Une liste.
+driver = webdriver.Firefox(options=options) # Ouvre le driver avec les options
+```
 
-### Fonction `get_param(exp, is_invert=False)`
+##### Navigation
 
-Cette fonction permet de trouver les paramètres a, b, c, d, e, f pour résoudre le système.
+```python
+assert "X" in driver.title # Verifie si il y à "X" dans le titre de la page
+```
 
-##### Input :
-| Variable | Description | Type | Exemple |
-|----------|----|--|---------|
-| exp  | une liste d'éléments récupérés avec `split_with_sign`  | list  | ["+4x", "+9y"] |
-| is_invert  | Faut-il inverser les résultats. Cette variable, par défaut `False`, permet de spécifier si c'est le membre droit ou gauche de l'équation dont on cherche à récupérer les valeurs | bool  | True |
-
-##### Output :
-
-| Ordre | Variable | Description | Type | Exemple |
-|----|------|----|--|---------|
-| 1 | x | Nombre de `x`  | float  | 1.5 |
-| 2 | x | Nombre de `y`  | float  | 7.0 |
-| 3 | x | Quotient  | float  | 4.0 |
-
-### Fonction `resoudre_systeme(a, b, c, d, e, f)`
-
-Cette fonction permet de résoudre le système pour les paramètres a, b, c, d, e, f pour le système suivant :
-
-$$
-\begin{aligned}
-ax + by = e \\
-cx + dy = f
-\end{aligned}
-$$
+```python
+elem = driver.find_element(By.XPATH, "XPATH") # Localise l'élement avec l'XPATH "XPATH"
+elem.click() # Clique dessus
+```
 
 
-##### Input :
+```python
+elem = driver.find_element(By.ID, "ID") # Localise l'élement avec l'ID "ID"
+elem.click() # Clique dessus
+```
 
-Variable `a`, `b`, `c`, `d`, `e`, `f`. Variables correspondantes au système ci-dessus
+Idem avec `CLASS_NAME`
 
-##### Output :
+```python
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "bouton_eleve"))) # Attent que l'élément exsiste
+```
 
-| Ordre | Variable | Description | Type | Exemple |
-|----|------|----|--|---------|
-| 1 | y | Valeur de `x`  | float  | 1.7 |
-| 2 | x | Valeur de `y`  | float  | 7.4 |
+```python
+onglets = driver.window_handles # Récupère une liste des onglets
+driver.switch_to.window(onglets[-1]) # Switch sur le dernier onglet ouvert
+```
+#### Fonction `locate_cours(elements)`
+
+Cette fonction prend en entrée une liste d'élément.
+Pour tous les élèment, elle vérifie si ils corresponde au REGEX suivant :
+
+```regex
+de ([0-9]{2})h([0-9]{2}) à ([0-9]{2})h([0-9]{2}) (.*)
+```
+
+puis, le cas échèant, récupère les horraires du cours 
+
+```python
+start_hour = datetime.strptime(f"{match.group(1)}h{match.group(2)}", format_hour).replace(year=now.year, month=now.month, day=now.day)
+end_hour = datetime.strptime(f"{match.group(3)}h{match.group(4)}", format_hour).replace(year=now.year, month=now.month, day=now.day)
+```
+
+Pour verifier si le cours à commencé ou non
+
+```python
+if now > start_hour :
+    ...
+elif now < start_hour :
+    ...
+```
+Dans le premier cas, verifie si le cours et fini
+
+```python3
+if now < end_hour :
+```
+
+Si oui, on affiche le cours en vert et on met `result` à `True`
+
+```pyton
+print(f"{Fore.GREEN}Cours : {match.group(5)} de {start_hour.strftime('%Hh%M')} à {end_hour.strftime('%Hh%M')}. Fin dans {((end_hour - now).total_seconds() / 60):.0f} minutes")
+result =  True
+```
+
+Sinon, on ne fait rien.
+
+Dans le second cas, on affiche le cours suivant en vert, on met `result` à `True`, et on sort de la boucle pour éviter d'afficher plus de cours.
+
+```python
+print(f"{Fore.GREEN}Prochain cours : {match.group(5)} de {start_hour.strftime('%Hh%M')} à {end_hour.strftime('%Hh%M')}. Début dans {((start_hour - now).total_seconds() / 60):.0f} minutes")
+result =  True
+break
+```
