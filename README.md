@@ -41,7 +41,8 @@ Quand la page GitHub du projet s'ouvre, GeckoDriver seras installé.
 
 ## Utilisation 
 
-Pour utiliser le programme, il faut le lancer dans un terminal avec
+Pour utiliser le programme, il faut le configurer ces information de connection en ouvran `login_info.txt`
+lancer dans un terminal avec
 ```bash
 python main.py
 ```
