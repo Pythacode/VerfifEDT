@@ -14,14 +14,14 @@
 ## Installation
 
 Pour installer le projet, téléchargez-le avec 
-```cmd
+```bash
 git clone https://github.com/Pythacode/VerfifEDT.git
 ```
 ou avec le fichier zip.
 
 Ensuite, rentrez dans le dossier du projet, puis installez les dépendances avec
 
-```cmd
+```bash
 pip install -r requirements.txt
 ```
 
@@ -37,22 +37,35 @@ Où en utilisant un script d'instalation automatique avec
 ```bash
 python3 install-geckodriver.py
 ```
+Quand la page GitHub du projet s'ouvre, GeckoDriver seras installé.
 
 ## Utilisation 
 
 Pour utiliser le programme, il faut le lancer dans un terminal avec
-```cmd
+```bash
 python main.py
 ```
 ou
-```cmd
+```bash
 python3 main.py
 ```
 
-Le programme vous demandera d'entrer les deux expressions l'une après l'autre.
+Le programme afficeras des logs, puis le cours actuel et le prochain cour.
+Attention, si la connexion est mauvaise, le programme peut ne pas fonctionner.
 
-> [!IMPORTANT]
-> Veillez à utiliser uniquement `x` et `y` pour les inconnues, et `+`, `-`, `=` pour les signes. Ce programme ne peut pas faire de produit.
+### Exemple de sortie
+
+```bash
+[2025-04-08 09:44:12] Open driver
+[2025-04-08 09:44:44] Driver opened
+[2025-04-08 09:44:45] Connection
+[2025-04-08 09:44:46] Éduconnect
+[2025-04-08 09:44:51] Bot log !
+[2025-04-08 09:44:53] Pronote
+[2025-04-08 09:45:02] Pronote load
+Cours : SC.NUMERIQ.TECHNOL. de 12h55 à 14h45. Fin dans 11 minutes
+Prochain cours : ALLEMAND LV2 de 1
+```
 
 ## Explication du code
 
