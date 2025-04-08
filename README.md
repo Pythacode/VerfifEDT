@@ -29,6 +29,15 @@ pip install -r requirements.txt
 > Python doit être installé, sinon, [installez-le](https://www.python.org/downloads/).
 > Pip doit également être installé, sinon, [installez-le](https://pip.pypa.io/en/stable/installation/) ou ajoutez `python -m` au début de la commande.
 
+Enfin, il faut installer GeckoDriver :
+
+En le téléchargant depuis le [GitHub de Mozzilla](https://github.com/mozilla/geckodriver/releases), puis en le plaçant dans un fichier PATH.
+
+Où en utilisant un script d'instalation automatique avec
+```bash
+python3 install-geckodriver.py
+```
+
 ## Utilisation 
 
 Pour utiliser le programme, il faut le lancer dans un terminal avec
