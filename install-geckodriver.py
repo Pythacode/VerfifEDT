@@ -3,7 +3,7 @@ try :
   from webdriver_manager.firefox import GeckoDriverManager
 except :
   import os
-  os.systeme('from selenium import webdriver')
+  os.systeme('pip install webdriver_manager')
   from webdriver_manager.firefox import GeckoDriverManager
   
 from selenium.webdriver.firefox.service import Service as FirefoxService
